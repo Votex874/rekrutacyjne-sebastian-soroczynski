@@ -1,9 +1,6 @@
 # next.js
 .next
 
-# content of task
-whatToDo.md
-
 # dependencies
 /node_modules
 
