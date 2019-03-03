@@ -29,12 +29,16 @@ const styles = () => createStyles({
 })
 
 interface StateProps {
-  jedi: string[],
+  jedi: string[]
 }
 
 type Props = StateProps & WithStyles<typeof styles>;
 //zmienić props any type!!
 class SkywalkersList extends PureComponent<Props>{
+  constructor(props) {
+    super(props)
+
+  }
   render() {
     const { jedi, classes } = this.props
     return (

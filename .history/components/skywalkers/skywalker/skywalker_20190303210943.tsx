@@ -10,6 +10,7 @@ import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { deletingSkywalker } from 'features/skywalkers/actions'
 import { connect } from 'react-redux';
+import { RootState } from 'features/redux/root-reducer';
 
 const styles = () => createStyles({
   cardStyles: {
@@ -22,42 +23,29 @@ const styles = () => createStyles({
 })
 
 interface DispatchProps {
-  onDelete: (id: number) => number
+  onDelete: () => number
 }
 
-interface StateProps {
-  id: number,
-  data: {
-    name: string;
-    height: string;
-    mass: string;
-    hair_color: string;
-    skin_color: string;
-    eye_color: string;
-    birth_year: string;
-    gender: string;
-    homeworld: string;
-    films: string[];
-    species: string[];
-    vehicles: string[];
-    starships: string;
-    created: string;
-    edited: string;
-    url: string;
-  }
-}
-
-type Props = StateProps & DispatchProps & WithStyles<typeof styles>;
+type Props = DispatchProps & WithStyles<typeof styles>;
 
 class Skywalker extends Component<Props> {
   constructor(props) {
     super(props)
 
   }
+  handleDeleteJedi = (id: number) => {
+    if (typeof this.props.handleDelete === 'function') {
+      this.props.handleDelete(id)
+    }
+  }
+
+  handleClick = (id: number) => {
+    this.props.onDelete(id)
+  }
 
   render() {
     console.log(this.props)
-    const { data, onDelete, id, classes } = this.props
+    const { data, handleDelete, onDelete, id, classes } = this.props
     const colorDependentOfGender = data.gender === 'male' ? '#00ABFF' : '#FF54EB';
     return (
       <React.Fragment>
@@ -85,8 +73,15 @@ class Skywalker extends Component<Props> {
   }
 }
 
+
+const mapStateToProps = (state: RootState) => {
+  return {
+    skywalkers: state.skywalkers
+  }
+}
+
 const mapDispatchToProps = {
-  onDelete: deletingSkywalker
+  onDelete: (id: number) => deletingSkywalker(id)
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Skywalker))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Skywalker))

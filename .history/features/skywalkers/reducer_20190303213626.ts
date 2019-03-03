@@ -9,7 +9,7 @@ export type StarwalkersState = {
 }
 
 export const initialState: StarwalkersState = {
-  jedi: [],
+  jedi: ['', ''],
   isFetching: false,
   legend: [
     'N - name',

@@ -58,4 +58,3 @@ export interface SwapiSkywalkersResponse {
       url: string;
     }
   ]
-}

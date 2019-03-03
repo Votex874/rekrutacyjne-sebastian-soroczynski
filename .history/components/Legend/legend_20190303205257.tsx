@@ -34,18 +34,20 @@ type Props = StateProps & WithStyles<typeof styles>;
 
 class Legend extends Component<Props> {
   render() {
-    const { classes, legend } = this.props
+    const { classes, state, content } = this.props
+    console.log(state)
     return (
       <Grid item className={classes.grid} >
         <Typography className={classes.title} variant="h6">Legend: </Typography>
         <List className={classes.list}>
-          {legend.map((e: string, i: number) => {
+          {content.map((e: string, i: number) => {
             return (
               <ListItem className={classes.item} key={i}>
                 {e}
               </ListItem>
             )
-          })}
+          }
+          )}
         </List>
       </Grid>
     )

@@ -10,6 +10,7 @@ import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { deletingSkywalker } from 'features/skywalkers/actions'
 import { connect } from 'react-redux';
+import { RootState } from 'features/redux/root-reducer';
 
 const styles = () => createStyles({
   cardStyles: {
@@ -22,37 +23,20 @@ const styles = () => createStyles({
 })
 
 interface DispatchProps {
-  onDelete: (id: number) => number
+  onDelete: () => number
 }
 
-interface StateProps {
-  id: number,
-  data: {
-    name: string;
-    height: string;
-    mass: string;
-    hair_color: string;
-    skin_color: string;
-    eye_color: string;
-    birth_year: string;
-    gender: string;
-    homeworld: string;
-    films: string[];
-    species: string[];
-    vehicles: string[];
-    starships: string;
-    created: string;
-    edited: string;
-    url: string;
-  }
-}
-
-type Props = StateProps & DispatchProps & WithStyles<typeof styles>;
+type Props = DispatchProps & WithStyles<typeof styles>;
 
 class Skywalker extends Component<Props> {
   constructor(props) {
     super(props)
 
+  }
+
+  handleClick = (id: number) => {
+    //dlaczego oczekuje funkcji bez argumentu ?!
+    this.props.onDelete(id)
   }
 
   render() {
@@ -73,7 +57,7 @@ class Skywalker extends Component<Props> {
             </Grid>
             <CardActions>
               <IconButton
-                onClick={() => onDelete(id)}
+                onClick={() => this.handleClick(id)}
                 style={{ marginLeft: 'auto', color: colorDependentOfGender }} aria-label="Delete">
                 <DeleteIcon />
               </IconButton>
@@ -85,8 +69,13 @@ class Skywalker extends Component<Props> {
   }
 }
 
+
+const mapStateToProps = () => {
+
+}
+
 const mapDispatchToProps = {
   onDelete: deletingSkywalker
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Skywalker))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Skywalker))

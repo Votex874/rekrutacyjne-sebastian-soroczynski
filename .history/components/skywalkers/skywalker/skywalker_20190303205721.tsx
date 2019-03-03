@@ -7,11 +7,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
 import { deletingSkywalker } from 'features/skywalkers/actions'
 import { connect } from 'react-redux';
+import { RootState } from 'features/redux/root-reducer';
 
-const styles = () => createStyles({
+const styles = (theme: Theme) => createStyles({
   cardStyles: {
     minWidth: '300px',
     boxShadow: '0px 0px 15px 2px rgba(255, 255, 144, 1), inset 0px 0px 15px 2px rgba(255, 255, 144, 1)'
@@ -21,43 +23,40 @@ const styles = () => createStyles({
   }
 })
 
+interface DateProps {
+  name: string;
+  height: string;
+  mass: string;
+  hair_color: string;
+  skin_color: string;
+  eye_color: string;
+  birth_year: string;
+  gender: string;
+  homeworld: string;
+  films: string;
+  species: string;
+  vehicles: string;
+  starships: string;
+  created: string;
+  edited: string;
+  url: string;
+}
+
 interface DispatchProps {
-  onDelete: (id: number) => number
+  onDelete: () => number
 }
 
-interface StateProps {
-  id: number,
-  data: {
-    name: string;
-    height: string;
-    mass: string;
-    hair_color: string;
-    skin_color: string;
-    eye_color: string;
-    birth_year: string;
-    gender: string;
-    homeworld: string;
-    films: string[];
-    species: string[];
-    vehicles: string[];
-    starships: string;
-    created: string;
-    edited: string;
-    url: string;
-  }
-}
-
-type Props = StateProps & DispatchProps & WithStyles<typeof styles>;
+type Props = DispatchProps & DateProps & WithStyles<typeof styles>;
 
 class Skywalker extends Component<Props> {
-  constructor(props) {
-    super(props)
-
+  handleDeleteJedi = (id: number) => {
+    if (typeof this.props.handleDelete === 'function') {
+      this.props.handleDelete(id)
+    }
   }
 
   render() {
-    console.log(this.props)
-    const { data, onDelete, id, classes } = this.props
+    const { data, handleDelete, onDelete, id, classes } = this.props
     const colorDependentOfGender = data.gender === 'male' ? '#00ABFF' : '#FF54EB';
     return (
       <React.Fragment>
@@ -73,7 +72,7 @@ class Skywalker extends Component<Props> {
             </Grid>
             <CardActions>
               <IconButton
-                onClick={() => onDelete(id)}
+                onClick={() => this.handleDeleteJedi(id)}
                 style={{ marginLeft: 'auto', color: colorDependentOfGender }} aria-label="Delete">
                 <DeleteIcon />
               </IconButton>
@@ -85,8 +84,15 @@ class Skywalker extends Component<Props> {
   }
 }
 
+
+const mapStateToProps = (state: RootState) => {
+  return {
+    state
+  }
+}
+
 const mapDispatchToProps = {
   onDelete: deletingSkywalker
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Skywalker))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Skywalker))

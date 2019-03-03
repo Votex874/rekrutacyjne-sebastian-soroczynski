@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { RootState } from 'features/redux/root-reducer';
 import List from '@material-ui/core/List'
@@ -26,26 +26,21 @@ const styles = () => createStyles({
   }
 })
 
-interface StateProps {
-  legend: string[]
-}
-
-type Props = StateProps & WithStyles<typeof styles>;
-
-class Legend extends Component<Props> {
+class Legend extends Component {
   render() {
     const { classes, legend } = this.props
     return (
       <Grid item className={classes.grid} >
         <Typography className={classes.title} variant="h6">Legend: </Typography>
         <List className={classes.list}>
-          {legend.map((e: string, i: number) => {
+          {content.map((e: string, i: number) => {
             return (
               <ListItem className={classes.item} key={i}>
                 {e}
               </ListItem>
             )
-          })}
+          }
+          )}
         </List>
       </Grid>
     )
@@ -54,7 +49,7 @@ class Legend extends Component<Props> {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    legend: state.skywalkers.legend
+    legend: state.legend
   }
 }
 

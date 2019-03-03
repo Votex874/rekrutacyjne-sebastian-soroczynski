@@ -45,7 +45,8 @@ class Legend extends Component<Props> {
                 {e}
               </ListItem>
             )
-          })}
+          }
+          )}
         </List>
       </Grid>
     )
@@ -54,7 +55,7 @@ class Legend extends Component<Props> {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    legend: state.skywalkers.legend
+    legend: state.legend
   }
 }
 

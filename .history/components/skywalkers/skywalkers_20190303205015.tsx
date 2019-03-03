@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
+import { deletingSkywalker } from 'features/skywalkers/actions'
 import { getSkywalkers } from 'features/skywalkers/selectors'
 import Skywalker from './skywalker/skywalker'
 import Legend from '../legend/legend'
@@ -29,14 +30,30 @@ const styles = () => createStyles({
 })
 
 interface StateProps {
-  jedi: string[],
+  jedi: string[]
 }
 
-type Props = StateProps & WithStyles<typeof styles>;
+interface DispatchProps {
+  onDelete: () => number
+}
+
+type Props = StateProps & DispatchProps & WithStyles<typeof styles>;
 //zmienić props any type!!
 class SkywalkersList extends PureComponent<Props>{
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      legendContent: [
+        'N - name',
+        'H - height',
+        'W - weight',
+        'EC - eye color',
+        'unknow - we are lack of data'
+      ]
+    }
+  }
   render() {
-    const { jedi, classes } = this.props
+    const { onDelete, jedi, classes } = this.props
     return (
       <div>
         <AppBar className={classes.bgNavbar} position="static">
@@ -49,11 +66,12 @@ class SkywalkersList extends PureComponent<Props>{
             <Grid key={i} container justify="center" className={classes.gridPadding} >
               <Skywalker
                 data={e}
+                handleDelete={onDelete}
                 id={i} />
             </Grid>
           ))}
         </Grid>
-        <Legend />
+        <Legend content={this.state.legendContent} />
       </div>
     )
   }
@@ -66,5 +84,9 @@ const mapStateToProps = (state: RootState) => {
   }
 }
 
-export default connect(mapStateToProps)
+const mapDispatchToProps = {
+  onDelete: deletingSkywalker
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)
   (withStyles(styles)(SkywalkersList))

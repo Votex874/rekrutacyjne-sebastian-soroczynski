@@ -45,7 +45,8 @@ class Legend extends Component<Props> {
                 {e}
               </ListItem>
             )
-          })}
+          }
+          )}
         </List>
       </Grid>
     )
