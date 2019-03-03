@@ -1,0 +1,27 @@
+import { deletingSkywalker } from 'features/skywalkers/actions'
+import { getSkywalkers } from 'features/skywalkers/selectors'
+
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+
+class SkywalkersList extends PureComponent {
+  render() {
+    console.log(this.props.jedi.length, 'jediki')
+    return (
+      1
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  const jedi = getSkywalkers(state)
+  return {
+    jedi
+  }
+}
+
+const mapDispatchToProps = {
+  onDelete: (id) => deletingSkywalker(id),
+};
+
+export default connect(mapStateToProps)(SkywalkersList)
