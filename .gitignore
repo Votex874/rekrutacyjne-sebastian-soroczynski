@@ -13,6 +13,9 @@ whatToDo.md
 # production
 /build
 
+# history
+/.history
+
 # misc
 .DS_Store
 .env.local
