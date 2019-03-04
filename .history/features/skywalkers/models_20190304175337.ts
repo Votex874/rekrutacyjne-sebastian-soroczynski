@@ -1,7 +1,4 @@
 export interface SwapiSkywalkersResponse {
-  count: number;
-  next: number | null;
-  previous: number | null;
   results: [
     {
       name: string;
@@ -13,10 +10,10 @@ export interface SwapiSkywalkersResponse {
       birth_year: string;
       gender: string;
       homeworld: string;
-      films: string;
-      species: string;
-      vehicles: string;
-      starships: string;
+      films: string[];
+      species: string[];
+      vehicles: string[];
+      starships: string[];
       created: string;
       edited: string;
       url: string;
@@ -31,10 +28,10 @@ export interface SwapiSkywalkersResponse {
       birth_year: string;
       gender: string;
       homeworld: string;
-      films: string;
-      species: string;
-      vehicles: string;
-      starships: string;
+      films: string[];
+      species: string[];
+      vehicles: string[];
+      starships: string[];
       created: string;
       edited: string;
       url: string;
@@ -49,14 +46,13 @@ export interface SwapiSkywalkersResponse {
       birth_year: string;
       gender: string;
       homeworld: string;
-      films: string;
-      species: string;
-      vehicles: string;
-      starships: string;
+      films: string[];
+      species: string[];
+      vehicles: string[];
+      starships: string[];
       created: string;
       edited: string;
       url: string;
     }
   ]
 }
-

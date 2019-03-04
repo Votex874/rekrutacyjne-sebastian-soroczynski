@@ -52,7 +52,7 @@ type Props = StateProps & DispatchProps & WithStyles<typeof styles>;
 class Skywalker extends Component<Props> {
   constructor(props) {
     super(props)
-
+    console.log(props)
   }
 
   render() {

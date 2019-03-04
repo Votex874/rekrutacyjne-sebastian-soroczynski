@@ -1,7 +1,7 @@
 export interface SwapiSkywalkersResponse {
-  count: number;
-  next: number | null;
-  previous: number | null;
+  count: string;
+  next: string;
+  previous: string;
   results: [
     {
       name: string;
@@ -59,4 +59,3 @@ export interface SwapiSkywalkersResponse {
     }
   ]
 }
-

@@ -56,6 +56,7 @@ class Skywalker extends Component<Props> {
   }
 
   render() {
+    console.log(this.props)
     const { data, onDelete, id, classes } = this.props
     const colorDependentOfGender = data.gender === 'male' ? '#00ABFF' : '#FF54EB';
     return (

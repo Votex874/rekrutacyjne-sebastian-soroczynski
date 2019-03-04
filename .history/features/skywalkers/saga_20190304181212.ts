@@ -13,6 +13,9 @@ export function* handleFetchSkywalkers() {
     }
     yield put(fetchSkywalkersRequest.request());
     const swapiResponse: SwapiSkywalkersResponse = yield call(api.getSkywalkersFromSwapi);
+    console.log(swapiResponse.results, 'results')
+    console.log(swapiResponse, 'swapi')
+    // Dlaczego on tutaj oczekuje na number ?!
     yield put(fetchSkywalkersRequest.success((swapiResponse.results)));
   } catch (err) {
     console.log(err);

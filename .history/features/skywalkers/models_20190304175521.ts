@@ -1,7 +1,7 @@
 export interface SwapiSkywalkersResponse {
-  count: number;
-  next: number | null;
-  previous: number | null;
+  count: string;
+  next: null;
+  previous: null;
   results: [
     {
       name: string;
@@ -13,9 +13,9 @@ export interface SwapiSkywalkersResponse {
       birth_year: string;
       gender: string;
       homeworld: string;
-      films: string;
-      species: string;
-      vehicles: string;
+      films: string[];
+      species: string[];
+      vehicles: string[];
       starships: string;
       created: string;
       edited: string;
@@ -59,4 +59,3 @@ export interface SwapiSkywalkersResponse {
     }
   ]
 }
-

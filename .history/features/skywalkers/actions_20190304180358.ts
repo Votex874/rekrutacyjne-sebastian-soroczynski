@@ -9,7 +9,7 @@ export const fetchSkywalkersRequest = createAsyncAction(
   'skywalkers/FETCH_SKYWALKERS_REQUESTED',
   'skywalkers/FETCH_SKYWALKERS_SUCCEEDED',
   'skywalkers/FETCH_SKYWALKERS_FAILED',
-)<void, string[], RequestError>();
+)<void, string, RequestError>();
 
 export const deletingSkywalker = createAction(
   'skywalkers/DELETING', action => {

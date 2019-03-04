@@ -56,8 +56,9 @@ class Skywalker extends Component<Props> {
   }
 
   render() {
+    console.log(this.props)
     const { data, onDelete, id, classes } = this.props
-    const colorDependentOfGender = data.gender === 'male' ? '#00ABFF' : '#FF54EB';
+    const colorDependentOfGender = data.gender === 'male' ? '#000' : '#000';
     return (
       <React.Fragment>
         <Card className={classes.cardStyles}>

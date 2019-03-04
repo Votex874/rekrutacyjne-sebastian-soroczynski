@@ -1,5 +1,6 @@
 import { RequestError } from 'features/api/models'
 import { createAction, createAsyncAction } from 'typesafe-actions';
+import { SwapiSkywalkersResponse } from './models'
 
 export const fetchSkywalkers = createAction(
   'skywalkers/FETCH_SKYWALKERS'

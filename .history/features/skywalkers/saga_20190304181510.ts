@@ -5,6 +5,7 @@ import * as api from './api';
 import { SwapiSkywalkersResponse } from './models';
 import { isFetching } from './selectors';
 
+
 export function* handleFetchSkywalkers() {
   try {
     const state = yield select();
@@ -13,6 +14,8 @@ export function* handleFetchSkywalkers() {
     }
     yield put(fetchSkywalkersRequest.request());
     const swapiResponse: SwapiSkywalkersResponse = yield call(api.getSkywalkersFromSwapi);
+    console.log(swapiResponse.results, 'results')
+    console.log(swapiResponse, 'swapi')
     yield put(fetchSkywalkersRequest.success((swapiResponse.results)));
   } catch (err) {
     console.log(err);
